@@ -1,12 +1,13 @@
+const mongoose = require('mongoose');
 const { connect, connection } = require('mongoose');
-const connectionString = process.env.MONGODB_URI || 'mongodb://localhost:27017/socialNetwork';
 
-connect(connectionString, {
+// Set strictQuery to true to use strict mode for queries globally
+mongoose.set('strictQuery', true);
+
+connect('mongodb://localhost:27017/socialNetwork', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-}).then(() => console.log('MongoDB connected successfully.'))
-  .catch(err => console.error('MongoDB connection error:', err));
+});
 
 module.exports = connection;
+
